@@ -12,7 +12,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.placidmasvidal.rabbitmqconsumer.domain.entities.Picture;
 
-@Service
+//@Service
 public class PictureVectorConsumer {
 
 	private ObjectMapper objectMapper = new ObjectMapper();

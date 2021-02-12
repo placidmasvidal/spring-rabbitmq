@@ -8,8 +8,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.placidmasvidal.rabbitmqproducer.domain.entities.Picture;
 
-//@Service
-public class PictureProducer {
+@Service
+public class PictureProducerTwo {
 
 	@Autowired
 	private RabbitTemplate rabbitTemplate;
@@ -18,8 +18,23 @@ public class PictureProducer {
 
 	public void sendMessage(Picture p) throws JsonProcessingException {
 
+		var sb = new StringBuilder();
+		
+		sb.append(p.getSource());
+		sb.append(".");
+		
+		if(p.getSize() > 4000) {
+			sb.append("large");
+		} else {
+			sb.append("small");
+		}
+		sb.append(".");
+		
+		sb.append(p.getType());
+		
 		var json = objectMapper.writeValueAsString(p);
-		rabbitTemplate.convertAndSend("x.picture", p.getType(), json);
+		var routingKey = sb.toString();
+		rabbitTemplate.convertAndSend("x.picture2", routingKey, json);
 
 	}
 }
