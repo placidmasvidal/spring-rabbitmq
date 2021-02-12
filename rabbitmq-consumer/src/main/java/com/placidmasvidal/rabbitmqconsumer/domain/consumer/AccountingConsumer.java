@@ -8,7 +8,7 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.placidmasvidal.rabbitmqconsumer.domain.consumer.entities.Employee;
+import com.placidmasvidal.rabbitmqconsumer.domain.entities.Employee;
 
 @Service
 public class AccountingConsumer {

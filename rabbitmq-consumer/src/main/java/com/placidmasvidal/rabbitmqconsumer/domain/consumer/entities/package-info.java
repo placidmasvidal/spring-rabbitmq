@@ -1,1 +1,0 @@
-package com.placidmasvidal.rabbitmqconsumer.domain.consumer.entities;
