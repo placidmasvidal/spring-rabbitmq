@@ -17,13 +17,12 @@ public class EmployeeJsonProducer {
 	private ObjectMapper objectMapper = new ObjectMapper();
 	
 	public void sendMessage(Employee emp) {
-		
 		try {
-			Object json = objectMapper.writeValueAsString(emp);
+			var json = objectMapper.writeValueAsString(emp);
 			rabbitTemplate.convertAndSend("course.employee", json);
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
-		
 	}
+	
 }

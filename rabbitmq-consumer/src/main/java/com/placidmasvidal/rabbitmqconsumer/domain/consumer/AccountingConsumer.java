@@ -1,4 +1,4 @@
-package com.placidmasvidal.rabbitmqconsumer.domain.consumer.entities;
+package com.placidmasvidal.rabbitmqconsumer.domain.consumer;
 
 import java.io.IOException;
 
@@ -8,24 +8,25 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.placidmasvidal.rabbitmqconsumer.domain.consumer.entities.Employee;
 
-//@Service
-public class EmployeeJsonConsumer {
+@Service
+public class AccountingConsumer {
 
 	private ObjectMapper objectMapper = new ObjectMapper();
 	
-	private static final Logger LOG = LoggerFactory.getLogger(EmployeeJsonConsumer.class);
+	private static final Logger LOG = LoggerFactory.getLogger(AccountingConsumer.class);
 	
-	@RabbitListener(queues = "course.employee")
+	@RabbitListener(queues = "q.hr.accounting")
 	public void listen(String message) {
-		Employee emp;
+		Employee emp = null;
 		try {
 			emp = objectMapper.readValue(message, Employee.class);
-			LOG.info("Employee is {}", emp);
-
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		LOG.info("On accounting, employee is {}", emp);
 	}
 	
 }

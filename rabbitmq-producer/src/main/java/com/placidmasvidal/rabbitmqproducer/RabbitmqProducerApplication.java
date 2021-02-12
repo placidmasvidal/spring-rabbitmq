@@ -8,14 +8,14 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.placidmasvidal.rabbitmqproducer.domain.entities.Employee;
-import com.placidmasvidal.rabbitmqproducer.domain.producer.EmployeeJsonProducer;
+import com.placidmasvidal.rabbitmqproducer.domain.producer.HumanResourceProducer;
 
 @SpringBootApplication
 //@EnableScheduling
 public class RabbitmqProducerApplication implements CommandLineRunner{
 
 	@Autowired
-	private EmployeeJsonProducer employeeJsonProducer;
+	private HumanResourceProducer humanResourceProducer;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(RabbitmqProducerApplication.class, args);
@@ -29,7 +29,7 @@ public class RabbitmqProducerApplication implements CommandLineRunner{
 //		helloRabbitProducer.sendHello("Placid " + Math.random());
 		for(int i = 0; i<5; i++) {
 			var e = new Employee("emp " + i, "Employee " + i, LocalDate.now());
-			employeeJsonProducer.sendMessage(e);
+			humanResourceProducer.sendMessage(e);
 		}
 	}
 
