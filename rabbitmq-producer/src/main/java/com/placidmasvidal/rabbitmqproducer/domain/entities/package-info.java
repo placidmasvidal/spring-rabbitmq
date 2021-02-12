@@ -1,0 +1,1 @@
+package com.placidmasvidal.rabbitmqproducer.domain.entities;
