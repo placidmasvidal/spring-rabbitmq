@@ -12,7 +12,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.placidmasvidal.rabbitmqconsumer.domain.entities.Picture;
 
-@Service
+//@Service
 public class PictureFilterConsumer {
 
 	private ObjectMapper objectMapper = new ObjectMapper();
@@ -21,8 +21,7 @@ public class PictureFilterConsumer {
 	
 	@RabbitListener(queues = "q.picture.filter")
 	public void listen(String message) throws JsonParseException, JsonMappingException, IOException {
-		Picture p = null;
-			p = objectMapper.readValue(message, Picture.class);
+		Picture p = objectMapper.readValue(message, Picture.class);
 		
 		LOG.info("On filter: {}", p.toString());
 	}
