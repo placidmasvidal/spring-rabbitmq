@@ -9,14 +9,14 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.placidmasvidal.rabbitmqproducer.domain.entities.Picture;
-import com.placidmasvidal.rabbitmqproducer.domain.producer.MyPictureProducer;
+import com.placidmasvidal.rabbitmqproducer.domain.producer.RetryPictureProducer;
 
 @SpringBootApplication
 //@EnableScheduling
 public class RabbitmqProducerApplication implements CommandLineRunner{
 
 	@Autowired
-	private MyPictureProducer myPictureProducer;
+	private RetryPictureProducer retryPictureProducer;
 	
 	private final List<String> SOURCES = List.of("mobile", "web");
 	
@@ -31,7 +31,7 @@ public class RabbitmqProducerApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		for(int i = 0; i<1; i++) {
+		for(int i = 0; i<10; i++) {
 			var p = new Picture();
 			
 			p.setName("Picture" + i);
@@ -39,7 +39,7 @@ public class RabbitmqProducerApplication implements CommandLineRunner{
 			p.setSource(SOURCES.get(i % SOURCES.size()));
 			p.setType(TYPES.get(i % TYPES.size()));
 			
-			myPictureProducer.sendMessage(p);
+			retryPictureProducer.sendMessage(p);
 			
 		}
 	}
