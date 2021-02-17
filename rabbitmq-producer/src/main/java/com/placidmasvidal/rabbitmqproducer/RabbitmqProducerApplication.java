@@ -1,17 +1,12 @@
 package com.placidmasvidal.rabbitmqproducer;
 
-import java.time.LocalDate;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import com.placidmasvidal.rabbitmqproducer.domain.entities.Employee;
-import com.placidmasvidal.rabbitmqproducer.domain.producer.RetryEmployeeProducer;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
-//@EnableScheduling
+@EnableScheduling
 public class RabbitmqProducerApplication implements CommandLineRunner{
 		
 	public static void main(String[] args) {
