@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.placidmasvidal.rabbitmqconsumer.domain.entities.Employee;
 
-@Service
+//@Service
 public class DeadMarketingConsumer {
 
 	private ObjectMapper objectMapper = new ObjectMapper();

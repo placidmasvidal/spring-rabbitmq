@@ -1,12 +1,12 @@
 server:
   port: 10000
- 
+
 ---
- 
+
 spring:
   rabbitmq:
-    listener:
-      direct:
-        acknowledge-mode: manual
-      simple:
-        acknowledge-mode: manual
+    host: hornet.rmq.cloudamqp.com
+    username: btwivuzd
+    virtual-host: btwivuzd
+    password: lVK-sD9vQ7PxSl5qR8S9Me4iiTIlIGNq
+

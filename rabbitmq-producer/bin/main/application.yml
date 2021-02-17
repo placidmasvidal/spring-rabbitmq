@@ -1,2 +1,12 @@
 server:
   port: 9090
+
+---
+
+spring:
+  rabbitmq:
+    host: hornet.rmq.cloudamqp.com
+    username: btwivuzd
+    virtual-host: btwivuzd
+    password: lVK-sD9vQ7PxSl5qR8S9Me4iiTIlIGNq
+
