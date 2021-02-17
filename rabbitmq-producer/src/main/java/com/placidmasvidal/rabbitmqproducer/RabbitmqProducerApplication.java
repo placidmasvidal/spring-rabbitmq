@@ -13,9 +13,6 @@ import com.placidmasvidal.rabbitmqproducer.domain.producer.RetryEmployeeProducer
 @SpringBootApplication
 //@EnableScheduling
 public class RabbitmqProducerApplication implements CommandLineRunner{
-
-	@Autowired
-	private RetryEmployeeProducer retryEmployeeProducer;
 		
 	public static void main(String[] args) {
 		SpringApplication.run(RabbitmqProducerApplication.class, args);	
@@ -23,13 +20,6 @@ public class RabbitmqProducerApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		for(int i = 0; i<10; i++) {
-
-			Employee emp = new Employee("Employee " + i, null, LocalDate.now());
-			
-			retryEmployeeProducer.sendMessage(emp);
-			
-		}
 	}
 
 }
