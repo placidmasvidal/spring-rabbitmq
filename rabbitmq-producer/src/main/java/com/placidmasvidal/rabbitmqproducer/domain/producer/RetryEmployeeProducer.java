@@ -6,19 +6,20 @@ import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.placidmasvidal.rabbitmqproducer.domain.entities.Picture;
+import com.placidmasvidal.rabbitmqproducer.domain.entities.Employee;
 
-//@Service
-public class MyPictureProducer {
+@Service
+public class RetryEmployeeProducer {
 
 	@Autowired
 	private RabbitTemplate rabbitTemplate;
 	
 	private ObjectMapper objectMapper = new ObjectMapper();
 	
-	public void sendMessage(Picture p) throws JsonProcessingException {
-		var json = objectMapper.writeValueAsString(p);
-		rabbitTemplate.convertAndSend("x.mypicture", "", json);
+	public void sendMessage(Employee emp) throws JsonProcessingException {
+		var json = objectMapper.writeValueAsString(emp);
+		rabbitTemplate.convertAndSend("x.guideline2.work", "", json);
+		
+		
 	}
-	
 }

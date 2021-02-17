@@ -1,12 +1,12 @@
 server:
   port: 10000
  
-#---
+---
  
-#spring:
-#  rabbitmq:
-#    listener:
-#      direct:
-#        acknowledge-mode: manual
-#      simple:
-#        acknowledge-mode: manual
+spring:
+  rabbitmq:
+    listener:
+      direct:
+        acknowledge-mode: manual
+      simple:
+        acknowledge-mode: manual

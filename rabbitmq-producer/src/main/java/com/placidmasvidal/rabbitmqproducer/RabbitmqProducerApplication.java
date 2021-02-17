@@ -1,45 +1,33 @@
 package com.placidmasvidal.rabbitmqproducer;
 
-import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
+import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.placidmasvidal.rabbitmqproducer.domain.entities.Picture;
-import com.placidmasvidal.rabbitmqproducer.domain.producer.RetryPictureProducer;
+import com.placidmasvidal.rabbitmqproducer.domain.entities.Employee;
+import com.placidmasvidal.rabbitmqproducer.domain.producer.RetryEmployeeProducer;
 
 @SpringBootApplication
 //@EnableScheduling
 public class RabbitmqProducerApplication implements CommandLineRunner{
 
 	@Autowired
-	private RetryPictureProducer retryPictureProducer;
-	
-	private final List<String> SOURCES = List.of("mobile", "web");
-	
-	private final List<String> TYPES = List.of("jpg", "png", "svg");
-	
+	private RetryEmployeeProducer retryEmployeeProducer;
+		
 	public static void main(String[] args) {
-		SpringApplication.run(RabbitmqProducerApplication.class, args);
-		
-		
-		
+		SpringApplication.run(RabbitmqProducerApplication.class, args);	
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
 		for(int i = 0; i<10; i++) {
-			var p = new Picture();
+
+			Employee emp = new Employee("Employee " + i, null, LocalDate.now());
 			
-			p.setName("Picture" + i);
-			p.setSize(ThreadLocalRandom.current().nextLong(9001, 10001));
-			p.setSource(SOURCES.get(i % SOURCES.size()));
-			p.setType(TYPES.get(i % TYPES.size()));
-			
-			retryPictureProducer.sendMessage(p);
+			retryEmployeeProducer.sendMessage(emp);
 			
 		}
 	}
